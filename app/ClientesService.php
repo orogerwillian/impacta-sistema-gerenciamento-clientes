@@ -19,7 +19,6 @@ class ClientesService
             'nome' => 'required',
             'data_nascimento' => 'required',
             'telefone' => 'required',
-            'estado_civil' => 'required',
             'tipo_pessoa' => 'required',
             'cpf_cnpj' => 'required',
             'email' => 'required|email',
@@ -69,6 +68,7 @@ class ClientesService
 
         if (array_key_exists('filtro', $filtros)) {
             $filtrosSql[] = ['nome', 'like', "%{$filtros['filtro']}%"];
+            $filtrosSql[] = ['id', $filtros['filtro']];
             $filtrosSql[] = ['email', 'like', "%{$filtros['filtro']}%"];
             $filtrosSql[] = ['cpf_cnpj', 'like', "%{$filtros['filtro']}%"];
         }
