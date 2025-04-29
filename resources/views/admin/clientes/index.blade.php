@@ -63,7 +63,7 @@
                 <th class="align-middle">Dt Nascimento / Abertura</th>
                 <th class="align-middle">Documento</th>
                 <th class="align-middle">Cidade</th>
-{{--                <th class="text-center align-middle">Ações</th>--}}
+                {{--                <th class="text-center align-middle">Ações</th>--}}
             </tr>
             </thead>
 
@@ -80,16 +80,12 @@
                     </td>
                     <td class="align-middle">{{ $cliente->endereco->cidade->nome }}
                         /{{ $cliente->endereco->cidade->estado->uf }}</td>
-{{--                    <td class="align-middle text-center">--}}
-{{--                        <a href="{{ route('clientes.visualizar', $cliente->id) }}" class="btn btn-link"--}}
-{{--                           style="color: white">--}}
-{{--                            <i class="fa fa-eye"></i>--}}
-{{--                        </a>--}}
-
-{{--                        <a href="#" class="btn btn-link" style="color: white">--}}
-{{--                            <i class="fa fa-trash"></i>--}}
-{{--                        </a>--}}
-{{--                    </td>--}}
+                    <td class="align-middle text-center">
+                        <a href="{{ route('clientes.visualizar', $cliente->id) }}" class="btn btn-link"
+                           style="color: white">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
                 </tr>
             @empty
                 <tr class="text-center">

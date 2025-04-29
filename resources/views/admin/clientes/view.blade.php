@@ -53,8 +53,13 @@
             </div>
 
             <div class="row">
+                @if($cliente->tipo_pessoa == 'Física')
                 <x-adminlte-input name="data_nascimento" label="Data Nascimento" type="text"
                                   fgroup-class="col-md-3" value="{{ $cliente->data_nascimento }}"/>
+                @else
+                    <x-adminlte-input name="data_nascimento" label="Data Abertura" type="text"
+                                      fgroup-class="col-md-3" value="{{ $cliente->data_nascimento }}"/>
+                @endif
 
                 <x-adminlte-input name="estado_civil" label="Estado Civil" type="text"
                                   fgroup-class="col-md-2" value="{{ $cliente->estado_civil }}"/>
