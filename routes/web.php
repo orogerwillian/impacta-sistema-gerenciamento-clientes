@@ -19,6 +19,7 @@ Route::prefix('clientes')->group(function () {
     Route::get('/novo', [ClientesController::class, 'Novo'])->name('clientes.novo');
     Route::post('/salvar', [ClientesController::class, 'SalvarCliente'])->name('clientes.salvar');
     Route::get('/visualizar/{id:int}', [ClientesController::class, 'Visualizar'])->name('clientes.visualizar');
+    Route::delete('/excluir/{id:int}', [ClientesController::class, 'ExcluirCliente'])->name('clientes.excluir');
 });
 
 

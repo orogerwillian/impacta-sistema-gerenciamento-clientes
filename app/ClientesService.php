@@ -91,4 +91,13 @@ class ClientesService
             ->with('endereco.cidade.estado')
             ->firstOrFail();
     }
+
+    public function ExcluirCliente($id)
+    {
+        Endereco::where('cliente_id', $id)->delete();
+
+        $cliente = Cliente::find($id);
+
+        $cliente->delete();
+    }
 }

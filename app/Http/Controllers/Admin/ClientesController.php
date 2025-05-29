@@ -52,4 +52,9 @@ class ClientesController extends Controller
     {
         return $this->service->SalvarCliente($request);
     }
+
+    public function ExcluirCliente($id)
+    {
+        $this->service->ExcluirCliente($id);
+    }
 }

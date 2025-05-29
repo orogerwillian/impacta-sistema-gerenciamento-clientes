@@ -85,6 +85,12 @@
                            style="color: white">
                             <i class="fa fa-eye"></i>
                         </a>
+
+                        <button href="#" class="btn btn-link botao_excluir" style="color: white" title="Excluir"
+                                data-id="{{ $cliente->id }}" data-name="{{ $cliente->nome }}"
+                                data-url="{{ route('clientes.excluir', $cliente->id) }}">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -104,10 +110,58 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function () {
             $('#botao_pesquisar').click(function () {
                 $("form").submit();
+            });
+
+            $('.botao_excluir').click(function () {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let url = $(this).data('url');
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-primary ml-3",
+                        cancelButton: "btn btn-secondary",
+                    },
+                    buttonsStyling: false
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: `Realmente desejar excluir o cliente ${name}?`,
+                    showCancelButton: true,
+                    confirmButtonText: "Excluir",
+                    denyButtonText: "Cancelar",
+                    showLoaderOnConfirm: true,
+                    reverseButtons: true,
+                    icon: "warning"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: url,
+                            type: "DELETE",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: id
+                            },
+                            success: function (response) {
+                                Swal.fire("Cliente excluído com sucesso! Recarregando...", "", "success");
+
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 2000);
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
